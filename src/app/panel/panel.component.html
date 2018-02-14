@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-sm-6">
+        <!-- [] = Variavel do progressbar / "" = variavel do painel -->
+        <app-progressbar [progress]="progress"></app-progressbar>
+      </div>
+      <div class="col-sm-6">
+        <div class="d-flex justify-content-end">
+          <!--<app-attempts [numberAttempts]="numberInitialAttempts"></app-attempts>-->
+          <app-attempts-bar [numberInitialAttempts]="numberInitialAttempts" [numberAttempts]="numberAttempts"></app-attempts-bar>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h6>Traduza a frase:</h6>
+        <p>{{ phraseCurrent.phraseEng }}</p>
+        <app-text-area (input)="updateResponse($event)" [text]="response"></app-text-area>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="d-flex justify-content-end">
+          <app-button-submit [title]="titleButton" (click)="checkAnswer()"></app-button-submit>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

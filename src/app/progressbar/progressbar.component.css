@@ -1,0 +1,8 @@
+.progress {
+    background: #A9E8DC;
+    border-color: solid 1px #0284A8;
+}
+
+.progress-bar {
+    background: #0284A8
+}
