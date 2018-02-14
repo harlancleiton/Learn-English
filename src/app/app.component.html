@@ -19,4 +19,30 @@
 </ul>
 -->
 <app-top></app-top>
-<app-panel></app-panel>
+<div *ngIf="gameRunning; else endGame">
+  <app-panel (closeGame)="closeGame($event)"></app-panel>
+</div>
+<ng-template #endGame>
+  <div *ngIf="won; else lost" class="container">
+    <div class="jumbotron">
+      <div class="row">
+        <div class="col-sm-6">
+          <p>Você venceu!</p>
+          <button class="btn btn-primary" (click)="restartGame()">Reiniciar jogo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #lost>
+    <div class="container">
+      <div class="jumbotron">
+        <div class="row">
+          <div class="col-sm-6">
+            <p>Você perdeu!</p>
+            <button class="btn btn-primary" (click)="restartGame()">Reiniciar jogo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-template>

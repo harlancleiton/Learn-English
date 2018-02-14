@@ -1,11 +1,10 @@
 //region Import
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { PhraseModel } from '../shared/phrase.model'
 import { PHRASES } from './phrase-mock'
 //endregion Import
 
 const numberInitialAttempts: number = 3
-let numberAttempts = numberInitialAttempts
 
 @Component({
   selector: 'app-panel',
@@ -18,32 +17,31 @@ export class PanelComponent implements OnInit {
   private phrases: Array<PhraseModel> = PHRASES
   private phraseCurrent: PhraseModel
   private response: string = ''
-  private numberAttempts: number = numberAttempts
+  private numberAttempts: number = numberInitialAttempts
   private numberInitialAttempts: number = numberInitialAttempts
   private round: number = 0
   private progress: number = 0
   private titleButton: string = "Verificar resposta"
+  @Output() private closeGame: EventEmitter<boolean> = new EventEmitter()
   //endregion Variables
 
   constructor() { this.updateCurrentPhrase() }
 
   //region Methods
   private checkAnswer(): void {
-    if (this.response == this.phraseCurrent.phraseBr) {
-      alert("Acertou")
+    if (this.response == this.phraseCurrent.phraseBr)
       this.refreshRound()
-    } else {
+    else
       this.wrongTranslation()
-      alert("Errou")
-    }
   }
 
   private refreshRound(): void {
     this.response = ''
     this.round++
     this.progress += (100 / this.phrases.length)
-    this.updateCurrentPhrase()
-
+    if (this.round < 4)
+      this.updateCurrentPhrase()
+    else this.closeGame.emit(true)
   }
 
   private updateCurrentPhrase(): void {
@@ -57,7 +55,8 @@ export class PanelComponent implements OnInit {
   private wrongTranslation(): void {
     if (this.numberAttempts > 0)
       this.numberAttempts--
-    else alert('Você ja utilizou todas suas chances.')
+    if (this.numberAttempts == 0)
+      this.closeGame.emit(false)
   }
   //endregion Methods
 
