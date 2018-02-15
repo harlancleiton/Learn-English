@@ -8,8 +8,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 export class AppComponent implements OnInit, OnDestroy {
 
   title = 'app';
-  private gameRunning: boolean = true
-  private won: boolean
+  public gameRunning: boolean = true
+  public won: boolean
 
   public closeGame(won: boolean): void {
     console.log(won)
@@ -17,7 +17,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.won = won
   }
 
-  private restartGame(): void {
+  public restartGame(): void {
     this.gameRunning = true
   }
 

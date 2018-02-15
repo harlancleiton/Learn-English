@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ButtonSubmitComponent implements OnInit {
 
-  @Input() private title: string
+  @Input() public title: string
 
   constructor() { }
 

@@ -10,7 +10,7 @@ export class AttemptsBarComponent implements OnInit, OnChanges {
 
   @Input() public numberAttempts: number = 0
   @Input() public numberInitialAttempts: number
-  private attempts: Array<AttemptComponent> = new Array<AttemptComponent>()
+  public attempts: Array<AttemptComponent> = new Array<AttemptComponent>()
 
   constructor() { console.log('numberAttempts constructor:' + this.numberAttempts) }
 

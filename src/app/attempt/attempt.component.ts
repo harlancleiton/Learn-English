@@ -11,11 +11,11 @@ const numberAttempts: number = 3
 export class AttemptComponent implements OnInit {
 
   private heart: HeartModel = new HeartModel()
-  @Input() private srcImage: string
+  @Input() public srcImage: string
 
   constructor() { }
 
-  private getSrc(): string {
+  public getSrc(): string {
     if (this.heart.isFull)
       return this.heart.pathHeartFull
     else return this.heart.pathHeartEmpty

@@ -14,21 +14,21 @@ const numberInitialAttempts: number = 3
 export class PanelComponent implements OnInit {
 
   //region Variables
-  private phrases: Array<PhraseModel> = PHRASES
-  private phraseCurrent: PhraseModel
-  private response: string = ''
-  private numberAttempts: number = numberInitialAttempts
-  private numberInitialAttempts: number = numberInitialAttempts
-  private round: number = 0
-  private progress: number = 0
-  private titleButton: string = "Verificar resposta"
-  @Output() private closeGame: EventEmitter<boolean> = new EventEmitter()
+  public phrases: Array<PhraseModel> = PHRASES
+  public phraseCurrent: PhraseModel
+  public response: string = ''
+  public numberAttempts: number = numberInitialAttempts
+  public numberInitialAttempts: number = numberInitialAttempts
+  public round: number = 0
+  public progress: number = 0
+  public titleButton: string = "Verificar resposta"
+  @Output() public closeGame: EventEmitter<boolean> = new EventEmitter()
   //endregion Variables
 
   constructor() { this.updateCurrentPhrase() }
 
   //region Methods
-  private checkAnswer(): void {
+  public checkAnswer(): void {
     if (this.response == this.phraseCurrent.phraseBr)
       this.refreshRound()
     else
@@ -48,7 +48,7 @@ export class PanelComponent implements OnInit {
     this.phraseCurrent = this.phrases[this.round]
   }
 
-  private updateResponse(response: Event): void {
+  public updateResponse(response: Event): void {
     this.response = (<HTMLInputElement>response.target).value
   }
 
